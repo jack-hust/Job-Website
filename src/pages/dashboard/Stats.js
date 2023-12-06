@@ -1,0 +1,21 @@
+import { useEffect } from "react";
+import { StatsContainer, ChartsContainer } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+import { showStats } from "../../features/AllJobs/AllJobsSlice";
+
+const Stats = () => {
+  const { monthlyApplications } = useSelector((store) => store.allJobs);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(showStats());
+  }, []);
+  return (
+    <>
+      <StatsContainer />
+      {monthlyApplications.length > 0 && <ChartsContainer />}
+    </>
+  );
+};
+
+export default Stats;
